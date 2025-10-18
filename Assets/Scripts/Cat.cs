@@ -9,32 +9,33 @@ public enum Type
 public class Cat : MonoBehaviour
 {
 	public Action<Cat> OnChangeParent;
+	public Action<Cat> OnUp;
 
 	public Type CatType;
 	public Sprite CatSprite;
 	public Transform Point;
-	public bool CanMove = false;
+
+	bool CanMove = true;
 
 	Transform parent;
+	Vector3 oldPos;
 	float speed = 15f;
 	Vector3 dragOffset;
 	SpriteRenderer spriteRenderer;
-	bool isChangedParent = false;
 
-	public void ChangeParent(Transform newParent, Transform point)
+
+	public void SetPos(Transform t, Transform p)
 	{
-		OnChangeParent?.Invoke(this);
-		parent = newParent;
-		Point = point;
-		isChangedParent = true;
-		transform.position = Point.position;
+		transform.position = new Vector3(t.position.x, t.position.y + spriteRenderer.bounds.size.y / 2, t.position.z);
+		CanMove = false;
+		transform.SetParent(p);
 	}
 
 	void Start()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.sprite = CatSprite;
-		parent = transform.parent;
+		parent = transform;
 	}
 
 
@@ -44,24 +45,31 @@ public class Cat : MonoBehaviour
 
 	}
 
+	void OnTransformParentChanged()
+	{
+		OnChangeParent?.Invoke(this);
+	}
+
 	private void OnMouseDown()
 	{
+		//Debug.Log("Down");
 		dragOffset = transform.position - GetMousePos();
-		isChangedParent = false;
+		oldPos = transform.position;
 	}
 
 	private void OnMouseDrag()
 	{
+		//Debug.Log("Drag");
 		if (CanMove)
 			this.transform.position = Vector3.MoveTowards(this.transform.position, GetMousePos() - dragOffset, speed * Time.deltaTime);
 	}
 
 	private void OnMouseUp()
 	{
-		if (!isChangedParent)
-		{
-			this.transform.position = Point.position;
-		}
+		//Debug.Log("Up");
+		OnUp?.Invoke(this);
+		if (CanMove)
+			transform.position = oldPos;
 	}
 	Vector3 GetMousePos()
 	{
