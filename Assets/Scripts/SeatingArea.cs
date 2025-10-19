@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,19 +6,22 @@ using UnityEngine;
 public class SeatingArea : MonoBehaviour
 {
 	public GameObject PointParent;
-	public GameObject ObjectsContainer;
 
+	Item[] Items;
 	List<SeatPoint> seatPoints;
 	Cat currentCat;
-	Transform currentTransform;
+	SeatPoint currentPoint;
 	void Start()
 	{
 		seatPoints = PointParent.transform.GetComponentsInChildren<SeatPoint>().ToList();
+		Items = new Item[seatPoints.Count];
 
-		foreach (SeatPoint point in seatPoints)
+		for (int i = 0; i < seatPoints.Count; i++)
 		{
-			point.OnEnter += OnEnter;
-			point.OnExit += OnExit;
+			seatPoints[i].OnEnter += OnEnter;
+			seatPoints[i].OnExit += OnExit;
+			seatPoints[i].OnAdd += addItem;
+			seatPoints[i].Order = i;
 		}
 	}
 
@@ -28,25 +32,40 @@ public class SeatingArea : MonoBehaviour
 	}
 
 
-	private void OnEnter(Cat cat, Transform t)
+	private void OnEnter(Cat cat, SeatPoint t)
 	{
 		currentCat = cat;
-		currentTransform = t;
+		currentPoint = t;
 		currentCat.OnUp += OnUp;
 	}
 
-	private void OnExit(Cat cat, Transform t)
+	private void OnExit(Cat cat, SeatPoint t)
 	{
-		if (currentCat == cat && currentTransform == t)
+		if (currentCat == cat && currentPoint == t)
 		{
+			currentCat.OnUp -= OnUp;
 			currentCat = null;
-			currentTransform = null;
+			currentPoint = null;
 		}
 	}
 
 	private void OnUp(Cat c)
 	{
-		if (currentCat != null && currentTransform != null)
-			currentCat.SetPos(currentTransform, ObjectsContainer.transform);
+		if (currentCat != null && currentPoint != null)
+		{
+			if (currentCat.OnSeat(Items, currentPoint.Order))
+			{
+				Items[currentPoint.Order] = currentCat.GetComponent<Item>();
+				currentCat.SetPos(currentPoint.transform);
+			}
+		currentCat.OnUp -= OnUp;
+		currentCat = null;
+		currentPoint = null;
+		}
+	}
+
+	private void addItem(Item i, int index)
+	{
+		Items[index] = i;
 	}
 }

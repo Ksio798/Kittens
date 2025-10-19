@@ -13,10 +13,11 @@ public class Cat : MonoBehaviour
 
 	public Type CatType;
 	public Sprite CatSprite;
-	public Transform Point;
+	//public Transform Point;
 
 	bool CanMove = true;
 
+	Item _item;
 	Transform parent;
 	Vector3 oldPos;
 	float speed = 15f;
@@ -24,11 +25,25 @@ public class Cat : MonoBehaviour
 	SpriteRenderer spriteRenderer;
 
 
-	public void SetPos(Transform t, Transform p)
+	public void SetPos(Transform t)
 	{
 		transform.position = new Vector3(t.position.x, t.position.y + spriteRenderer.bounds.size.y / 2, t.position.z);
 		CanMove = false;
-		transform.SetParent(p);
+		transform.SetParent(t);
+	}
+
+	public virtual bool OnSeat(Item[] items, int index)
+	{
+		bool result = true;
+		if (index - 1 >= 0 && items[index - 1] != null)
+			if (items[index - 1].Type == ItemType.Cat && items[index - 1].Color != _item.Color)
+				result = false;
+
+		if (index + 1 <= items.Length - 1 && items[index + 1] != null)
+			if (items[index + 1].Type == ItemType.Cat && items[index + 1].Color != _item.Color)
+				result = false;
+
+		return result;
 	}
 
 	void Start()
@@ -36,6 +51,7 @@ public class Cat : MonoBehaviour
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.sprite = CatSprite;
 		parent = transform;
+		_item = GetComponent<Item>();
 	}
 
 
@@ -55,6 +71,7 @@ public class Cat : MonoBehaviour
 		//Debug.Log("Down");
 		dragOffset = transform.position - GetMousePos();
 		oldPos = transform.position;
+		spriteRenderer.sortingOrder = 5;
 	}
 
 	private void OnMouseDrag()
@@ -66,6 +83,7 @@ public class Cat : MonoBehaviour
 
 	private void OnMouseUp()
 	{
+		spriteRenderer.sortingOrder = 3;
 		//Debug.Log("Up");
 		OnUp?.Invoke(this);
 		if (CanMove)

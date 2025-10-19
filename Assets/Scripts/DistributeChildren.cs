@@ -7,6 +7,7 @@ public class DistributeChildren : MonoBehaviour
 {
 	public bool SetWidth, MoveBottom, UpdateOnChange, HorisontalSet, VertcialSet;
 
+	public float leftPadding = 0, rightPadding = 0, offset = 0f;
 
 	List<Transform> transforms;
 	SpriteRenderer sr = null;
@@ -27,20 +28,30 @@ public class DistributeChildren : MonoBehaviour
 
 	void setChildrenHorisontal()
 	{
-		transforms = transform.GetComponentsInChildren<Transform>().Where(t => t != transform).ToList();
-		spacing = transforms.Count - 1 > 0 ? width / (transforms.Count - 1) : 0;
+		transforms = Enumerable.Range(0, transform.childCount).Select(i => transform.GetChild(i)).ToList();
+
+		float usableWidth = width - leftPadding - rightPadding;
+		spacing = transforms.Count - 1 > 0 ? usableWidth / (transforms.Count - 1) : 0;
 
 		for (int i = 0; i < transforms.Count; i++)
 		{
 			transforms[i].position = transform.position;
-			float x = spacing != 0 ? -width / 2 + spacing * i : 0;
+			float x = spacing != 0 ? -width / 2f + leftPadding + spacing * i : 0;
 			transforms[i].position = new Vector3(x, transforms[i].position.y, transforms[i].position.z);
 		}
 	}
 
 	void setChildrenVertcial()
 	{
-		
+		transforms = Enumerable.Range(0, transform.childCount).Select(i => transform.GetChild(i)).ToList();
+		spacing = transforms.Count - 1 > 0 ? height / (transforms.Count - 1) : 0;
+
+		for (int i = 0; i < transforms.Count; i++)
+		{
+			transforms[i].position = transform.position;
+			float y = spacing != 0 ? -height / 2 + spacing * i : 0;
+			transforms[i].position = new Vector3(transforms[i].position.x, y, transforms[i].position.z);
+		}
 	}
 
 	void setPos()
@@ -57,7 +68,6 @@ public class DistributeChildren : MonoBehaviour
 
 	void moveToBottom()
 	{
-		float offset = 0f;
 		Camera cam = Camera.main;
 
 		Vector3 bottom = cam.ScreenToWorldPoint(new Vector3(Screen.width / 2f, 0f, cam.nearClipPlane));
