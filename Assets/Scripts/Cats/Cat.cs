@@ -15,14 +15,14 @@ public class Cat : MonoBehaviour
 	public Sprite CatSprite;
 	//public Transform Point;
 
-	bool CanMove = true;
+	protected bool CanMove = true;
 
-	Item _item;
-	Transform parent;
-	Vector3 oldPos;
-	float speed = 15f;
-	Vector3 dragOffset;
-	SpriteRenderer spriteRenderer;
+	protected Item _item;
+	protected Transform parent;
+	protected Vector3 oldPos;
+	protected float speed = 15f;
+	protected Vector3 dragOffset;
+	protected SpriteRenderer spriteRenderer;
 
 
 	public void SetPos(Transform t)
@@ -46,7 +46,7 @@ public class Cat : MonoBehaviour
 		return result;
 	}
 
-	void Start()
+	protected void Start()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.sprite = CatSprite;
@@ -55,7 +55,7 @@ public class Cat : MonoBehaviour
 	}
 
 
-	void Update()
+	protected void Update()
 	{
 
 
@@ -66,7 +66,7 @@ public class Cat : MonoBehaviour
 		OnChangeParent?.Invoke(this);
 	}
 
-	private void OnMouseDown()
+	protected void OnMouseDown()
 	{
 		//Debug.Log("Down");
 		dragOffset = transform.position - GetMousePos();
@@ -74,14 +74,14 @@ public class Cat : MonoBehaviour
 		spriteRenderer.sortingOrder = 5;
 	}
 
-	private void OnMouseDrag()
+	protected void OnMouseDrag()
 	{
 		//Debug.Log("Drag");
 		if (CanMove)
 			this.transform.position = Vector3.MoveTowards(this.transform.position, GetMousePos() - dragOffset, speed * Time.deltaTime);
 	}
 
-	private void OnMouseUp()
+	protected void OnMouseUp()
 	{
 		spriteRenderer.sortingOrder = 3;
 		//Debug.Log("Up");
@@ -89,7 +89,7 @@ public class Cat : MonoBehaviour
 		if (CanMove)
 			transform.position = oldPos;
 	}
-	Vector3 GetMousePos()
+	protected Vector3 GetMousePos()
 	{
 		var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		pos.z = 0;
