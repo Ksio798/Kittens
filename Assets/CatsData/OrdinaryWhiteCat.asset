@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0873f6733b3674fbf852f3e94353b0, type: 3}
   m_Name: OrdinaryWhiteCat
   m_EditorClassIdentifier: Assembly-CSharp::CatData
-  CatSprite: {fileID: 3795976024316314760, guid: 6196f4f4908492e41b5f11105443bf75, type: 3}
+  CatSprite: {fileID: 21300000, guid: e4fedcf2c90241647af66f3c3dd3bdee, type: 3}
   CatName: "\u0411\u0435\u043B\u044B\u0439 \u043A\u043E\u0442"
   CatInfo: "\u0421\u0430\u0434\u0438\u0442\u0441\u044F \u0442\u043E\u043B\u044C\u043A\u043E
     \u0440\u044F\u0434\u043E\u043C \u0441 \u043A\u043E\u0442\u0430\u043C\u0438 \u0442\u0430\u043A\u043E\u0433\u043E

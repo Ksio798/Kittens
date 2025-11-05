@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SeatPoint : MonoBehaviour
 {
@@ -11,12 +12,13 @@ public class SeatPoint : MonoBehaviour
 	Item child = null;
 	private void Start()
 	{
-		if (transform.childCount != 0)
-		{
-			child = transform.GetChild(0).GetComponent<Item>();
-			child.transform.position = new Vector3(transform.position.x, transform.position.y + child.GetComponent<SpriteRenderer>().bounds.size.y / 2, transform.position.z);
-			OnAdd?.Invoke(child, Order);
-		}
+		//if (transform.childCount != 0)
+		//{
+		//	child = transform.GetChild(0).GetComponent<Item>();
+		//	//child.transform.position = new Vector3(transform.position.x, transform.position.y + child.GetComponent<SpriteRenderer>().bounds.size.y / 2, transform.position.z);
+		//	OnAdd?.Invoke(child, Order);
+		//	GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+		//}
 	}
 
 
@@ -35,6 +37,11 @@ public class SeatPoint : MonoBehaviour
 	void OnTransformChildrenChanged()
 	{
 		child = transform.GetChild(0).GetComponent<Item>();
-		OnAdd?.Invoke(child, Order);
+		if (child != null)
+		{
+			child.transform.position = new Vector3(transform.position.x, transform.position.y + child.GetComponent<SpriteRenderer>().bounds.size.y / 2, transform.position.z);
+			GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+			OnAdd?.Invoke(child, Order);
+		}
 	}
 }

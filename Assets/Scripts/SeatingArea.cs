@@ -6,23 +6,48 @@ using UnityEngine;
 public class SeatingArea : MonoBehaviour
 {
 	public GameObject PointParent;
+	public int SeatCount = 5;
+	public SeatPoint PointPrefab;
+	public List<Item> AddedItems = new List<Item>();
 
 	Item[] Items;
-	List<SeatPoint> seatPoints;
+	List<SeatPoint> seatPoints = new List<SeatPoint>();
 	Cat currentCat;
 	SeatPoint currentPoint;
 	void Start()
 	{
-		seatPoints = PointParent.transform.GetComponentsInChildren<SeatPoint>().ToList();
-		Items = new Item[seatPoints.Count];
+		Items = new Item[SeatCount];
 
-		for (int i = 0; i < seatPoints.Count; i++)
+		for (int i = 0; i < SeatCount; i++)
 		{
-			seatPoints[i].OnEnter += OnEnter;
-			seatPoints[i].OnExit += OnExit;
-			seatPoints[i].OnAdd += addItem;
-			seatPoints[i].Order = i;
+			SeatPoint point = Instantiate(PointPrefab);
+			point.transform.position = PointParent.transform.position;
+			point.transform.SetParent(PointParent.transform);
+			point.OnEnter += OnEnter;
+			point.OnExit += OnExit;
+			point.OnAdd += addItem;
+			point.Order = i;
+			seatPoints.Add(point);
+
+			if (i < AddedItems.Count && AddedItems[i] != null)
+			{
+				Item item = Instantiate(AddedItems[i]);
+				item.transform.position = point.transform.position;
+				item.transform.SetParent(point.transform);
+			}
 		}
+
+
+		//seatPoints = PointParent.transform.GetComponentsInChildren<SeatPoint>().ToList();
+		//Items = new Item[seatPoints.Count];
+
+		//for (int i = 0; i < seatPoints.Count; i++)
+		//{
+		//	seatPoints[i].OnEnter += OnEnter;
+		//	seatPoints[i].OnExit += OnExit;
+		//	seatPoints[i].OnAdd += addItem;
+		//	seatPoints[i].Order = i;
+		//}
 	}
 
 	// Update is called once per frame
@@ -58,9 +83,9 @@ public class SeatingArea : MonoBehaviour
 				Items[currentPoint.Order] = currentCat.GetComponent<Item>();
 				currentCat.SetPos(currentPoint.transform);
 			}
-		currentCat.OnUp -= OnUp;
-		currentCat = null;
-		currentPoint = null;
+			currentCat.OnUp -= OnUp;
+			currentCat = null;
+			currentPoint = null;
 		}
 	}
 

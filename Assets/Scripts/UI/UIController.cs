@@ -5,6 +5,8 @@ public class UIController : MonoBehaviour
 {
     public GameObject MenuPanel;
     public GameObject InfoPanel;
+    public GameObject WinPanel;
+    public SpawnPlatform Spawn;
 
     public List<CatData> CatDatas = new List<CatData>();
     public Transform CatContent;
@@ -22,6 +24,11 @@ public class UIController : MonoBehaviour
         InfoPanel.SetActive(!InfoPanel.activeSelf);
     }
 
+    public void OpenWin()
+    {
+        WinPanel.SetActive(true);
+    }
+
 	private void Start()
 	{
 		foreach (var cat in CatDatas)
@@ -30,5 +37,7 @@ public class UIController : MonoBehaviour
             panelInfo.Set(cat);
             panelInfo.transform.SetParent(CatContent);
         }
+
+        Spawn.OnWin += OpenWin;
 	}
 }
