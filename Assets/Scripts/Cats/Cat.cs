@@ -34,16 +34,7 @@ public class Cat : MonoBehaviour
 
 	public virtual bool OnSeat(Item[] items, int index)
 	{
-		bool result = true;
-		if (index - 1 >= 0 && items[index - 1] != null)
-			if (items[index - 1].Type == ItemType.Cat && items[index - 1].Color != _item.Color)
-				result = false;
-
-		if (index + 1 <= items.Length - 1 && items[index + 1] != null)
-			if (items[index + 1].Type == ItemType.Cat && items[index + 1].Color != _item.Color)
-				result = false;
-
-		return result;
+		return NearSame(items, index) && !FindEnemy(items);
 	}
 
 	protected void Start()
@@ -64,6 +55,36 @@ public class Cat : MonoBehaviour
 	void OnTransformParentChanged()
 	{
 		OnChangeParent?.Invoke(this);
+	}
+
+	protected bool NearSame(Item[] items, int index)
+	{
+		bool result = true;
+		if (index - 1 >= 0 && items[index - 1] != null)
+			if (items[index - 1].Type == ItemType.Cat && items[index - 1].Color != _item.Color)
+				result = false;
+
+		if (index + 1 <= items.Length - 1 && items[index + 1] != null)
+			if (items[index + 1].Type == ItemType.Cat && items[index + 1].Color != _item.Color)
+				result = false;
+
+		return result;
+	}
+
+	protected bool FindEnemy(Item[] items)
+	{
+		bool result = false;
+
+		foreach (Item item in items)
+		{
+			if (item != null && item.Type == ItemType.Enemy)
+			{
+				result = true;
+				break;
+			}
+		}
+
+		return result;
 	}
 
 	protected void OnMouseDown()

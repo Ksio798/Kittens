@@ -26,6 +26,7 @@ public class SeatingArea : MonoBehaviour
 			point.OnEnter += OnEnter;
 			point.OnExit += OnExit;
 			point.OnAdd += addItem;
+			point.OnRemove += delItem;
 			point.Order = i;
 			seatPoints.Add(point);
 
@@ -36,18 +37,6 @@ public class SeatingArea : MonoBehaviour
 				item.transform.SetParent(point.transform);
 			}
 		}
-
-
-		//seatPoints = PointParent.transform.GetComponentsInChildren<SeatPoint>().ToList();
-		//Items = new Item[seatPoints.Count];
-
-		//for (int i = 0; i < seatPoints.Count; i++)
-		//{
-		//	seatPoints[i].OnEnter += OnEnter;
-		//	seatPoints[i].OnExit += OnExit;
-		//	seatPoints[i].OnAdd += addItem;
-		//	seatPoints[i].Order = i;
-		//}
 	}
 
 	// Update is called once per frame
@@ -92,5 +81,10 @@ public class SeatingArea : MonoBehaviour
 	private void addItem(Item i, int index)
 	{
 		Items[index] = i;
+	}
+
+	private void delItem(int index)
+	{
+		Items[index] = null;
 	}
 }

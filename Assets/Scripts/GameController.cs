@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
     
     void SaveLevel()
     {
+        if (SaveController.Instance == null)
+            return;
         SaveController.Instance.CreateSave(SceneManager.GetActiveScene().buildIndex);
         SaveController.Instance.SaveData();
     }

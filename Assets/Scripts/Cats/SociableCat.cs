@@ -14,6 +14,6 @@ public class SociableCat : Cat
 			if (items[index + 1].Type == ItemType.Cat)
 				result = true;
 
-		return result;
+		return result && !FindEnemy(items);
 	}
 }

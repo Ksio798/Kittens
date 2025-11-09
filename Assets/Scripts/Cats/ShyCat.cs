@@ -14,6 +14,6 @@ public class ShyCat : Cat
 			}
 		}
 
-		return result;
+		return result && !FindEnemy(items);
 	}
 }

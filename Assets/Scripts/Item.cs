@@ -2,12 +2,12 @@ using UnityEngine;
 
 public enum ItemType
 {
-	Cat, Vase, Box
+	Cat, Vase, Box, Enemy
 }
 
 public enum ItemColor
 {
-	Black, White, Orange
+	Black, White, Common, Kotalt
 }
 
 public class Item : MonoBehaviour
