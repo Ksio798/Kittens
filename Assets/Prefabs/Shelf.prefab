@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f7b3d3088c377d64780740d81ba1eae6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 004857feedf98dc4fbd688e062253167, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DistributeChildren
   SetWidthScale: 0
   SetWidth: 1
+  SetHeightScale: 0
   MoveBottom: 0
   UpdateOnChange: 1
   HorisontalSet: 1

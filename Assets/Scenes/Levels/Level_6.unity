@@ -397,6 +397,42 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.95
       objectReference: {fileID: 0}
+    - target: {fileID: 2917844664438152113, guid: c217b9712c7f6f24395972fd1aa356e8, type: 3}
+      propertyPath: Cats.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917844664438152113, guid: c217b9712c7f6f24395972fd1aa356e8, type: 3}
+      propertyPath: 'Cats.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7214963209847321282, guid: 014d544f3602b1a44985ee7675f31421, type: 3}
+    - target: {fileID: 2917844664438152113, guid: c217b9712c7f6f24395972fd1aa356e8, type: 3}
+      propertyPath: 'Cats.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7214963209847321282, guid: 014d544f3602b1a44985ee7675f31421, type: 3}
+    - target: {fileID: 2917844664438152113, guid: c217b9712c7f6f24395972fd1aa356e8, type: 3}
+      propertyPath: 'Cats.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7214963209847321282, guid: 014d544f3602b1a44985ee7675f31421, type: 3}
+    - target: {fileID: 2917844664438152113, guid: c217b9712c7f6f24395972fd1aa356e8, type: 3}
+      propertyPath: 'Cats.Array.data[3]'
+      value: 
+      objectReference: {fileID: 5609167295060547264, guid: 8810322e9777bef4e96bb14c6ff99e19, type: 3}
+    - target: {fileID: 2917844664438152113, guid: c217b9712c7f6f24395972fd1aa356e8, type: 3}
+      propertyPath: 'Cats.Array.data[4]'
+      value: 
+      objectReference: {fileID: 3843521350563033887, guid: 009e86c098cb43943a8a18c06bda5425, type: 3}
+    - target: {fileID: 2917844664438152113, guid: c217b9712c7f6f24395972fd1aa356e8, type: 3}
+      propertyPath: 'Cats.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2178797753737901448, guid: aae62b67e8243b1429351da1ce4b3c6a, type: 3}
+    - target: {fileID: 2917844664438152113, guid: c217b9712c7f6f24395972fd1aa356e8, type: 3}
+      propertyPath: 'Cats.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2178797753737901448, guid: aae62b67e8243b1429351da1ce4b3c6a, type: 3}
+    - target: {fileID: 2917844664438152113, guid: c217b9712c7f6f24395972fd1aa356e8, type: 3}
+      propertyPath: 'Cats.Array.data[7]'
+      value: 
+      objectReference: {fileID: 2178797753737901448, guid: aae62b67e8243b1429351da1ce4b3c6a, type: 3}
     - target: {fileID: 4488098269257418031, guid: c217b9712c7f6f24395972fd1aa356e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

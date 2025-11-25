@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303d023d4fb575c4abdb3dfafcab2d1e, type: 3}
   m_Name: Ed_2
   m_EditorClassIdentifier: Assembly-CSharp::EducationData
-  EdSprite: {fileID: 21300000, guid: 3ae189081c95c6144aa0c1c3cd5d1820, type: 3}
+  EdSprite: {fileID: 21300000, guid: 784481b2430d4644ba14d2113201e641, type: 3}
   EdInfo: "\u0415\u0441\u043B\u0438 \u0443 \u0442\u0435\u0431\u044F \u0447\u0442\u043E-\u043D\u0438\u0431\u0443\u0434\u044C
     \u043D\u0435 \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u0441\u044F, \u0432\u0441\u0435\u0433\u0434\u0430
     \u043C\u043E\u0436\u043D\u043E \u043D\u0430\u0447\u0430\u0442\u044C \u0443\u0440\u043E\u0432\u0435\u043D\u044C

@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2c9370ae0f350d34a9197433ed0b5dc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3188ef90458e68a4b939446a988abd50, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShyCat
   CatType: 0
-  CatSprite: {fileID: 21300000, guid: 2c9370ae0f350d34a9197433ed0b5dc1, type: 3}
+  CatSprite: {fileID: 21300000, guid: 3188ef90458e68a4b939446a988abd50, type: 3}
 --- !u!114 &5334490657779651806
 MonoBehaviour:
   m_ObjectHideFlags: 0

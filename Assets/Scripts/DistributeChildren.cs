@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class DistributeChildren : MonoBehaviour
 {
-	public bool SetWidthScale, SetWidth, MoveBottom, UpdateOnChange, HorisontalSet, VertcialSet;
+	public bool SetWidthScale, SetWidth, SetHeightScale, MoveBottom, UpdateOnChange, HorisontalSet, VertcialSet;
 
 	public float leftPadding = 0, rightPadding = 0, offset = 0f;
 
@@ -25,6 +25,7 @@ public class DistributeChildren : MonoBehaviour
 		screenWidth = screenHeight * Camera.main.aspect;
 
 		setWidthScale();
+		setHeightScale();		
 		moveToBottom();
 		setWidth();
 
@@ -80,11 +81,18 @@ public class DistributeChildren : MonoBehaviour
 	{
 		if (!SetWidth) return;
 
-		float screenHeight = 2f * Camera.main.orthographicSize;
-		float screenWidth = screenHeight * Camera.main.aspect;
-
 		transform.localScale = Vector3.one;
 		sr.size = new Vector2(screenWidth, sr.size.y);
+	}
+
+	void setHeightScale()
+	{
+		if(!SetHeightScale) return;
+
+		float spriteWidth = sr.bounds.size.y / transform.localScale.y;
+		float scaleY = screenHeight / spriteWidth;
+
+		transform.localScale = new Vector3(transform.localScale.x, scaleY, transform.localScale.z);
 	}
 
 	void moveToBottom()
