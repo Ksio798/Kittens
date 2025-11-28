@@ -3,41 +3,47 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    public GameObject MenuPanel;
-    public GameObject InfoPanel;
-    public GameObject WinPanel;
-    public SpawnPlatform Spawn;
+	public GameObject MenuPanel;
+	public GameObject InfoPanel;
+	public GameObject WinPanel;
+	public SpawnPlatform Spawn;
 
-    public List<CatData> CatDatas = new List<CatData>();
-    public Transform CatContent;
+	public List<CatData> CatDatas = new List<CatData>();
+	public Transform CatContent;
 
-    public CatPanelInfo PanelPrefab;
-    public void OpenMenu()
-    {   
-        InfoPanel.SetActive(false);
+	public CatPanelInfo PanelPrefab;
+	public void OpenMenu()
+	{
+		InfoPanel.SetActive(false);
 		MenuPanel.SetActive(!MenuPanel.activeSelf);
-    }
+	}
 
-    public void OpenInfo() 
-    { 
-        MenuPanel.SetActive(false);
-        InfoPanel.SetActive(!InfoPanel.activeSelf);
-    }
+	public void OpenInfo()
+	{
+		MenuPanel.SetActive(false);
+		InfoPanel.SetActive(!InfoPanel.activeSelf);
+	}
 
-    public void OpenWin()
-    {
-        WinPanel.SetActive(true);
-    }
+	public void OpenWin()
+	{
+		WinPanel.SetActive(true);
+	}
+
+	public void Cancel()
+	{
+		if (Cat.instance != null)
+			Cat.instance.Cancel();
+	}
 
 	private void Start()
 	{
 		foreach (var cat in CatDatas)
-        {
-            CatPanelInfo panelInfo = Instantiate(PanelPrefab);
-            panelInfo.Set(cat);
-            panelInfo.transform.SetParent(CatContent);
-        }
+		{
+			CatPanelInfo panelInfo = Instantiate(PanelPrefab);
+			panelInfo.Set(cat);
+			panelInfo.transform.SetParent(CatContent);
+		}
 
-        Spawn.OnWin += OpenWin;
+		Spawn.OnWin += OpenWin;
 	}
 }

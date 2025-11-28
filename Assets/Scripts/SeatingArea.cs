@@ -13,6 +13,7 @@ public class SeatingArea : MonoBehaviour
 	Item[] Items;
 	List<SeatPoint> seatPoints = new List<SeatPoint>();
 	Cat currentCat;
+	Cat lastCat = null; 
 	SeatPoint currentPoint;
 	void Start()
 	{
@@ -38,13 +39,6 @@ public class SeatingArea : MonoBehaviour
 			}
 		}
 	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
-
 
 	private void OnEnter(Cat cat, SeatPoint t)
 	{
@@ -77,6 +71,7 @@ public class SeatingArea : MonoBehaviour
 			currentPoint = null;
 		}
 	}
+
 
 	private void addItem(Item i, int index)
 	{

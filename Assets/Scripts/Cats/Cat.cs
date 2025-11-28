@@ -8,6 +8,8 @@ public enum Type
 
 public class Cat : MonoBehaviour
 {
+	public static Cat instance = null;
+
 	public Action<Cat> OnChangeParent;
 	public Action<Cat> OnUp;
 
@@ -18,7 +20,7 @@ public class Cat : MonoBehaviour
 	protected bool CanMove = true;
 
 	protected Item _item;
-	protected Transform parent;
+	protected Transform oldParent;
 	protected Vector3 oldPos;
 	protected float speed = 15f;
 	protected Vector3 dragOffset;
@@ -30,6 +32,7 @@ public class Cat : MonoBehaviour
 		transform.position = new Vector3(t.position.x, t.position.y + spriteRenderer.bounds.size.y / 2, t.position.z);
 		CanMove = false;
 		transform.SetParent(t);
+		instance = this;
 	}
 
 	public virtual bool OnSeat(Item[] items, int index)
@@ -37,11 +40,21 @@ public class Cat : MonoBehaviour
 		return NearSame(items, index) && !FindEnemy(items);
 	}
 
+	public virtual void Cancel()
+	{
+		if (oldParent == transform.parent)
+			return;
+
+		transform.position = oldParent.position;
+		transform.SetParent(oldParent);
+		CanMove = true;
+	}
+
 	protected void Start()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.sprite = CatSprite;
-		parent = transform;
+		oldParent = transform.parent;
 		_item = GetComponent<Item>();
 	}
 
