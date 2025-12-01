@@ -5,7 +5,11 @@ public enum Type
 {
 	first, second, third, fourth, fifth, sixth
 }
-
+public class Pair
+{
+	public Transform pos;
+	public Item _item;
+}
 public class Cat : MonoBehaviour
 {
 	public static Cat instance = null;

@@ -7,7 +7,7 @@ public enum ItemType
 
 public enum ItemColor
 {
-	Black, White, Common, Kotalt
+	Black, White, Common, Kotalt, Destroyer
 }
 
 public class Item : MonoBehaviour

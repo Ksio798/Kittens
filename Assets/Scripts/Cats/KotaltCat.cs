@@ -1,19 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class Pair
-{
-	public Transform pos;
-	public Item _item;
-}
-
-
 public class KotaltCat : Cat
 {
 	List<Pair> pairs = new List<Pair> ();
 
 	public override bool OnSeat(Item[] items, int index)
 	{
+		if(!NearSame(items, index))
+			return false;
+
 		if (FindEnemy(items))
 		{
 			foreach (Item item in items)
