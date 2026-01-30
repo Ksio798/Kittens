@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SeatPoint : MonoBehaviour
 {
@@ -12,43 +11,39 @@ public class SeatPoint : MonoBehaviour
 	public int Order;
 
 	Item child = null;
-	Color baceColor;
-	private void Start()
-	{
-
-	}
-
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		// Вызывается, когда объект входит в 2D-триггер этой точки
+		// Уведомляем только если вошёл кот и место свободно (child == null)
 		if (collision.GetComponent<Cat>() != null && child == null)
 			OnEnter?.Invoke(collision.GetComponent<Cat>(), this);
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
+		// Вызывается, когда объект выходит из 2D-триггера этой точки
+		// Уведомляем только если вышел кот и место свободно (child == null)
 		if (collision.GetComponent<Cat>() != null && child == null)
 			OnExit?.Invoke(collision.GetComponent<Cat>(), this);
 	}
 
-	void OnTransformChildrenChanged()
+	void OnTransformChildrenChanged()//Вызывается, когда изменились дочерние объекты точки
 	{
 		if (transform.childCount > 0)
 		{
 			child = transform.GetChild(0).GetComponent<Item>();
-			if (child != null)
+			if (child != null)// Поднимаем предмет вверх на половину его высоты, чтобы он "стоял" на точке
 			{
-				child.transform.position = new Vector3(transform.position.x, transform.position.y + child.GetComponent<SpriteRenderer>().bounds.size.y / 2, transform.position.z);
-				baceColor = GetComponent<SpriteRenderer>().color;
-				GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-				OnAdd?.Invoke(child, Order);
+				child.transform.position = new Vector3(transform.position.x, transform.position.y +
+					child.GetComponent<SpriteRenderer>().bounds.size.y / 2, transform.position.z);
+				OnAdd?.Invoke(child, Order);// Сообщаем, что слот заняли, чтобы обновить массив состояния
 			}
 		}
 		else
 		{
-			GetComponent<SpriteRenderer>().color = baceColor;
 			child = null;
-			OnRemove?.Invoke(Order);
+			OnRemove?.Invoke(Order);// Сообщаем, что слот освободился, чтобы очистить массив состояния
 		}
 
 	}

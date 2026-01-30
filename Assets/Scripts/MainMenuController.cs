@@ -7,12 +7,8 @@ public class MainMenuController : MonoBehaviour
 {
 	public SceneLoader Loader;
 
-	public TextMeshProUGUI ButtonText;
 	public GameObject LevelsPanel;
-	public Transform ParentPanel;
 	public GameObject LevelsButton;
-
-	public Button ButtonPrefab;
 
 	[SerializeField]
 	List<LineElement> LinesPrefabs = new List<LineElement>();
@@ -21,21 +17,18 @@ public class MainMenuController : MonoBehaviour
 	[SerializeField]
 	Transform LevelsParent;
 	[SerializeField]
-	public TextMeshProUGUI Leveltext;
-	int index = 0;
+	TextMeshProUGUI Leveltext;
 
-	void Start()
+	void Start()//Загрузка сохранения при старте игры
 	{
 		SaveController.Instance.LoadData();
 		EducationController.ids.Clear();
 
 		if (SaveController.Instance.Save != null && SaveController.Instance.Save.LevelsId.Count > 0)
 		{
-			ButtonText.text = "Продолжить";
 			LevelsButton.SetActive(true);
 			Leveltext.text = SaveController.Instance.Save.LevelsId.Count.ToString();
-			setButtons();
-			setLevels();
+			setLevels();//Вызов функции расстановки кнопок урвоней, если есть сохранение
 		}
 		else
 		{
@@ -43,36 +36,27 @@ public class MainMenuController : MonoBehaviour
 		}
 	}
 
-	public void Del()
+	public void Del()//Удаление сохранения по кнопке
 	{
 		SaveController.Instance.DeleteSave();
 	}
 
-	public void OpenPanel()
+	public void OpenPanel()//Отрытие\закрытие панели с уровнями по кнопке
 	{
 		LevelsPanel.SetActive(!LevelsPanel.activeSelf);
 	}
 
-	void setButtons()
+	void setLevels()//Размещение кнопок для выбора уровня
 	{
-		foreach (int i in SaveController.Instance.Save.LevelsId)
-		{
-			Button b = Instantiate(ButtonPrefab);
-			b.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString();
-			b.onClick.AddListener(() => { Loader.LoadByIndex(i); });
-			b.transform.SetParent(ParentPanel);
-		}
-	}
+		int index = 0;
 
-	void setLevels()
-	{
 		foreach (int i in SaveController.Instance.Save.LevelsId)
 		{
 			int r = Random.Range(0, SpriteDecor.Count);
 
-			LineElement line = Instantiate(LinesPrefabs[index]);
+			LineElement line = Instantiate(LinesPrefabs[index]);//Генерация части изображения из префаба
 			line.SetInfo(SpriteDecor[r], i.ToString());
-			line.LevelButton.onClick.AddListener(() => { Loader.LoadByIndex(i); });
+			line.LevelButton.onClick.AddListener(() => { Loader.LoadByIndex(i); });//Назначение каждой кнопке функции перехода на нужный уровень
 			line.transform.SetParent(LevelsParent);
 			index++;
 			if (index > LinesPrefabs.Count - 1)

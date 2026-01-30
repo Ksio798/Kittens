@@ -1,16 +1,13 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SpawnPlatform : MonoBehaviour
 {
-	public List<Cat> Cats = new List<Cat>();
+	public List<Cat> Cats = new List<Cat>();//Список ппрефабов котов на уровне
 	public Action OnWin;
 
-	void Start()
+	void Start()//Генерируем котов из префабов и садим в нужную позицию
 	{
 		for (int i = 0; i < Cats.Count; i++)
 		{
@@ -20,15 +17,9 @@ public class SpawnPlatform : MonoBehaviour
 		}
 	}
 
-	void OnTransformChildrenChanged()
+	void OnTransformChildrenChanged()//Если на стартовой позиции не осталось котов, вызываем сообщение о победе
 	{
 		if (transform.childCount == 0)
 			OnWin?.Invoke();
 	}
-
-
-
-
-
-
 }

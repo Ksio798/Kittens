@@ -514,6 +514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShyCat
   CatType: 0
   CatSprite: {fileID: -3600665137078354465, guid: 6196f4f4908492e41b5f11105443bf75, type: 3}
+  placeSounds: []
 --- !u!1 &381014178
 GameObject:
   m_ObjectHideFlags: 0
@@ -6828,6 +6829,26 @@ PrefabInstance:
     - target: {fileID: 2682823038126115044, guid: b57cc5190a6ef8a42870a820185b230c, type: 3}
       propertyPath: m_Name
       value: EducationBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841466708839559041, guid: b57cc5190a6ef8a42870a820185b230c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841466708839559041, guid: b57cc5190a6ef8a42870a820185b230c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841466708839559041, guid: b57cc5190a6ef8a42870a820185b230c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841466708839559041, guid: b57cc5190a6ef8a42870a820185b230c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841466708839559041, guid: b57cc5190a6ef8a42870a820185b230c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9178210479085768816, guid: b57cc5190a6ef8a42870a820185b230c, type: 3}
       propertyPath: m_LocalPosition.x

@@ -5,24 +5,24 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class SaveData
+public class SaveData//Сохраняемая информация
 {
 	public List<int> LevelsId = new List<int>();
 }
 
 public class SaveController : MonoBehaviour
 {
-	public static SaveController Instance;
+	public static SaveController Instance;//Статичный экземпляр объекта для доступа в любой части кода
 
 	public string FileName = "save.svs";
 	public SaveData Save = null;
 
-	void Awake()
+	void Awake()//Назначение синглтона
 	{
 		if (Instance == null)
 		{
 			Instance = this;
-			DontDestroyOnLoad(gameObject);
+			DontDestroyOnLoad(gameObject);//Отключение удаления объекта при переходе на новую сцену
 		}
 		else
 		{
@@ -30,7 +30,7 @@ public class SaveController : MonoBehaviour
 		}
 	}
 
-	public void CreateSave(int ID)
+	public void CreateSave(int ID)//Добавление информации в существующее сохранение или создание нового
 	{
 		if (Save == null)
 		{
@@ -45,9 +45,8 @@ public class SaveController : MonoBehaviour
 		}
 	}
 
-	public void SaveData()
+	public void SaveData()//Запись сохранения в файл
 	{
-
 		BinaryFormatter bf = new BinaryFormatter();
 
 		string path = getFilePath();
@@ -65,7 +64,7 @@ public class SaveController : MonoBehaviour
 		}
 	}
 
-	public void LoadData()
+	public void LoadData()//Загрузка сохранения из файла
 	{
 		BinaryFormatter bf = new BinaryFormatter();
 
@@ -84,7 +83,7 @@ public class SaveController : MonoBehaviour
 		Save = null;
 		File.Delete(getFilePath());
 	}
-	string getFilePath()
+	string getFilePath()//Автоматическое получение пути к файлу сохранения
 	{
 		string filePath = Path.Combine(Application.persistentDataPath, FileName);
 		return filePath;

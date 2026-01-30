@@ -10,7 +10,7 @@ public enum ItemColor
 	Black, White, Common, Kotalt, Destroyer
 }
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour //Характеристики конкретного объекта
 {
 	public ItemType Type;
 	public ItemColor Color;

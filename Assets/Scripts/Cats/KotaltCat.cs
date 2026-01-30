@@ -5,7 +5,7 @@ public class KotaltCat : Cat
 {
 	List<Pair> pairs = new List<Pair> ();
 
-	public override bool OnSeat(Item[] items, int index)
+	public override bool OnSeat(Item[] items, int index) //Переопределение метода проверки условий размещения
 	{
 		if(!NearSame(items, index))
 			return false;
@@ -30,7 +30,7 @@ public class KotaltCat : Cat
 		return NearSame(items, index);
 	}
 
-	public override void Cancel()
+	public override void Cancel()  //Переопределение метода возврата с добавлением уничтожения объектов
 	{
 		base.Cancel();
 

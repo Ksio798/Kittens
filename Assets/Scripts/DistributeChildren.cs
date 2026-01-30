@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class DistributeChildren : MonoBehaviour
 {
@@ -19,7 +18,7 @@ public class DistributeChildren : MonoBehaviour
 		sr = GetComponent<SpriteRenderer>();
 	}
 
-	void Start()
+	void Start()// Выполняем настроенные в редакторе действия при старте сцены
 	{
 		screenHeight = 2f * Camera.main.orthographicSize;
 		screenWidth = screenHeight * Camera.main.aspect;
@@ -35,7 +34,7 @@ public class DistributeChildren : MonoBehaviour
 		setChildrenVertcial();
 	}
 
-	void setChildrenHorisontal()
+	void setChildrenHorisontal()// Функция раскладывает дочерние объекты по горизонтали внутри ширины экрана, учитывая отступы
 	{
 		if (!HorisontalSet) return;
 
@@ -52,7 +51,7 @@ public class DistributeChildren : MonoBehaviour
 		}
 	}
 
-	void setChildrenVertcial()
+	void setChildrenVertcial()// Функция раскладывает дочерние объекты по вертикали по высоте текущего спрайта/объекта
 	{
 		if (!VertcialSet) return;
 
@@ -67,7 +66,7 @@ public class DistributeChildren : MonoBehaviour
 		}
 	}
 
-	void setWidthScale()
+	void setWidthScale()// Функция подгоняет ширину объекта под ширину экрана, меняя transform.localScale.x
 	{
 		if(!SetWidthScale) return;
 
@@ -77,7 +76,7 @@ public class DistributeChildren : MonoBehaviour
 		transform.localScale = new Vector3(scaleX, transform.localScale.y, transform.localScale.z);
 	}
 
-	void setWidth()
+	void setWidth()// Функция подгоняет ширину объекта под ширину экрана
 	{
 		if (!SetWidth) return;
 
@@ -85,7 +84,7 @@ public class DistributeChildren : MonoBehaviour
 		sr.size = new Vector2(screenWidth, sr.size.y);
 	}
 
-	void setHeightScale()
+	void setHeightScale()// Функция подгоняет высоту объекта под высоту экрана, меняя transform.localScale.y
 	{
 		if(!SetHeightScale) return;
 
@@ -95,7 +94,7 @@ public class DistributeChildren : MonoBehaviour
 		transform.localScale = new Vector3(transform.localScale.x, scaleY, transform.localScale.z);
 	}
 
-	void moveToBottom()
+	void moveToBottom() // Функция прижимает объект к нижнему краю экрана
 	{
 		if (!MoveBottom) return;
 
@@ -109,7 +108,7 @@ public class DistributeChildren : MonoBehaviour
 		transform.position = new Vector3(bottom.x, bottom.y + halfHeight + offset, transform.position.z);
 	}
 
-	void getSize()
+	void getSize() // Функция рассчитывает размеры области для раскладки детей, учитывая размер ребёнка
 	{
 		if (transform.childCount == 0) return;
 
@@ -119,13 +118,11 @@ public class DistributeChildren : MonoBehaviour
 		else if (child.GetComponent<BoxCollider2D>() != null)
 			childWidth = child.GetComponent<BoxCollider2D>().size.x * transform.localScale.x;
 
-
 		width = sr.bounds.size.x - childWidth;
-
 		height = sr.bounds.size.y;
 	}
 
-	void OnTransformChildrenChanged()
+	void OnTransformChildrenChanged()//Вызов необходимых функций при смене дочерних объектов
 	{
 		if (UpdateOnChange)
 		{

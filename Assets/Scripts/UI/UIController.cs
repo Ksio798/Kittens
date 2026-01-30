@@ -8,28 +8,28 @@ public class UIController : MonoBehaviour
 	public GameObject WinPanel;
 	public SpawnPlatform Spawn;
 
-	public List<CatData> CatDatas = new List<CatData>();
+	public List<CatData> CatDatas = new List<CatData>();//Информация о котах на уровне
 	public Transform CatContent;
 
 	public CatPanelInfo PanelPrefab;
-	public void OpenMenu()
+	public void OpenMenu()//Открытие\закрытие меню пузы
 	{
 		InfoPanel.SetActive(false);
 		MenuPanel.SetActive(!MenuPanel.activeSelf);
 	}
 
-	public void OpenInfo()
+	public void OpenInfo()//Открытие\закрытие меню с информацией о котах
 	{
 		MenuPanel.SetActive(false);
 		InfoPanel.SetActive(!InfoPanel.activeSelf);
 	}
 
-	public void OpenWin()
+	public void OpenWin()//Открытие панели при победе
 	{
 		WinPanel.SetActive(true);
 	}
 
-	public void Cancel()
+	public void Cancel()//Активация отката последнего хода по кнопке
 	{
 		if (Cat.instance != null)
 			Cat.instance.Cancel();
@@ -37,13 +37,13 @@ public class UIController : MonoBehaviour
 
 	private void Start()
 	{
-		foreach (var cat in CatDatas)
+		foreach (var cat in CatDatas)//Установка информации о котах на уровне
 		{
 			CatPanelInfo panelInfo = Instantiate(PanelPrefab);
 			panelInfo.Set(cat);
 			panelInfo.transform.SetParent(CatContent);
 		}
 
-		Spawn.OnWin += OpenWin;
+		Spawn.OnWin += OpenWin;//Подписка на событие при победе
 	}
 }

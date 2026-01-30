@@ -6,7 +6,7 @@ public class DestroyerCat : Cat
 {
 	List<Pair> pairs = new List<Pair>();
 
-	public override bool OnSeat(Item[] items, int index)
+	public override bool OnSeat(Item[] items, int index) //Переопределение метода проверки условий размещения
 	{
 		if(!base.OnSeat(items, index))
 			return false;
@@ -20,7 +20,7 @@ public class DestroyerCat : Cat
 		return base.OnSeat(items, index);
 	}
 
-	public override void Cancel()
+	public override void Cancel() //Переопределение метода возврата с добавлением уничтожения объектов
 	{
 		base.Cancel();
 
@@ -34,7 +34,7 @@ public class DestroyerCat : Cat
 		pairs.Clear();
 	}
 
-	void destroyItem(Item item)
+	void destroyItem(Item item) // Дезактивация уничтожаемых объектов и запоминание для оката при необходимости
 	{
 		if (item.Type == ItemType.Vase)
 		{

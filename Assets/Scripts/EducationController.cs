@@ -1,13 +1,10 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class EducationController : MonoBehaviour
 {
-	public List<EducationData> Educations = new List<EducationData>();
+	public List<EducationData> Educations = new List<EducationData>();//Список файлов с обычением на кровне
 	public EdPanel PanelPrefab;
 	public EdPanel ImagePanelPrefab;
 
@@ -20,15 +17,16 @@ public class EducationController : MonoBehaviour
 
 	void Start()
 	{
+		// При старте: если шагов нет или в этой сцене обучение уже показывали - ничего не делаем
 		if (Educations.Count == 0 || ids.Contains(SceneManager.GetActiveScene().buildIndex)) return;
 
-		EdCanvas.SetActive(true);
-		ids.Add(SceneManager.GetActiveScene().buildIndex);
+		EdCanvas.SetActive(true); // Включаем UI обучения
+		ids.Add(SceneManager.GetActiveScene().buildIndex); // Запоминаем, что в этой сцене обучение уже показано
 
-		setPanel();
+		setPanel(); // Создаём и показываем первый шаг обучения
 	}
 
-	public void NextEd()
+	public void NextEd()//Переходим к следующему шагу обучения или закрываем, если обычение закончилось
 	{
 		index++;
 
@@ -38,20 +36,17 @@ public class EducationController : MonoBehaviour
 			setPanel();
 	}
 
-	void setPanel()
+	void setPanel()// Создаёт панель для текущего шага (Educations[index]) и заполняет её данными
 	{
 		if (oldPanel != null)
 			Destroy(oldPanel.gameObject);
 
 		EdPanel ed;
-		if (Educations[index].EdSprite != null)
-		{
+		if (Educations[index].EdSprite != null)// Выбираем тип панели с изображением или без
 			ed = Instantiate(ImagePanelPrefab);
-		}
 		else
-		{
 			ed = Instantiate(PanelPrefab);
-		}
+		
 
 		ed.transform.position = ParentPanel.transform.position;
 		ed.transform.SetParent(ParentPanel.transform);
