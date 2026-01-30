@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using UnityEngine;
 
 public class SeatPoint : MonoBehaviour
@@ -14,36 +14,36 @@ public class SeatPoint : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		// Вызывается, когда объект входит в 2D-триггер этой точки
-		// Уведомляем только если вошёл кот и место свободно (child == null)
+		// Р’С‹Р·С‹РІР°РµС‚СЃСЏ, РєРѕРіРґР° РѕР±СЉРµРєС‚ РІС…РѕРґРёС‚ РІ 2D-С‚СЂРёРіРіРµСЂ СЌС‚РѕР№ С‚РѕС‡РєРё
+		// РЈРІРµРґРѕРјР»СЏРµРј С‚РѕР»СЊРєРѕ РµСЃР»Рё РІРѕС€С‘Р» РєРѕС‚ Рё РјРµСЃС‚Рѕ СЃРІРѕР±РѕРґРЅРѕ (child == null)
 		if (collision.GetComponent<Cat>() != null && child == null)
 			OnEnter?.Invoke(collision.GetComponent<Cat>(), this);
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		// Вызывается, когда объект выходит из 2D-триггера этой точки
-		// Уведомляем только если вышел кот и место свободно (child == null)
+		// Р’С‹Р·С‹РІР°РµС‚СЃСЏ, РєРѕРіРґР° РѕР±СЉРµРєС‚ РІС‹С…РѕРґРёС‚ РёР· 2D-С‚СЂРёРіРіРµСЂР° СЌС‚РѕР№ С‚РѕС‡РєРё
+		// РЈРІРµРґРѕРјР»СЏРµРј С‚РѕР»СЊРєРѕ РµСЃР»Рё РІС‹С€РµР» РєРѕС‚ Рё РјРµСЃС‚Рѕ СЃРІРѕР±РѕРґРЅРѕ (child == null)
 		if (collision.GetComponent<Cat>() != null && child == null)
 			OnExit?.Invoke(collision.GetComponent<Cat>(), this);
 	}
 
-	void OnTransformChildrenChanged()//Вызывается, когда изменились дочерние объекты точки
+	void OnTransformChildrenChanged()//Р’С‹Р·С‹РІР°РµС‚СЃСЏ, РєРѕРіРґР° РёР·РјРµРЅРёР»РёСЃСЊ РґРѕС‡РµСЂРЅРёРµ РѕР±СЉРµРєС‚С‹ С‚РѕС‡РєРё
 	{
 		if (transform.childCount > 0)
 		{
 			child = transform.GetChild(0).GetComponent<Item>();
-			if (child != null)// Поднимаем предмет вверх на половину его высоты, чтобы он "стоял" на точке
+			if (child != null)// РџРѕРґРЅРёРјР°РµРј РїСЂРµРґРјРµС‚ РІРІРµСЂС… РЅР° РїРѕР»РѕРІРёРЅСѓ РµРіРѕ РІС‹СЃРѕС‚С‹, С‡С‚РѕР±С‹ РѕРЅ "СЃС‚РѕСЏР»" РЅР° С‚РѕС‡РєРµ
 			{
 				child.transform.position = new Vector3(transform.position.x, transform.position.y +
 					child.GetComponent<SpriteRenderer>().bounds.size.y / 2, transform.position.z);
-				OnAdd?.Invoke(child, Order);// Сообщаем, что слот заняли, чтобы обновить массив состояния
+				OnAdd?.Invoke(child, Order);// РЎРѕРѕР±С‰Р°РµРј, С‡С‚Рѕ СЃР»РѕС‚ Р·Р°РЅСЏР»Рё, С‡С‚РѕР±С‹ РѕР±РЅРѕРІРёС‚СЊ РјР°СЃСЃРёРІ СЃРѕСЃС‚РѕСЏРЅРёСЏ
 			}
 		}
 		else
 		{
 			child = null;
-			OnRemove?.Invoke(Order);// Сообщаем, что слот освободился, чтобы очистить массив состояния
+			OnRemove?.Invoke(Order);// РЎРѕРѕР±С‰Р°РµРј, С‡С‚Рѕ СЃР»РѕС‚ РѕСЃРІРѕР±РѕРґРёР»СЃСЏ, С‡С‚РѕР±С‹ РѕС‡РёСЃС‚РёС‚СЊ РјР°СЃСЃРёРІ СЃРѕСЃС‚РѕСЏРЅРёСЏ
 		}
 
 	}

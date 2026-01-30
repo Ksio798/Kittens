@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ public class DestroyerCat : Cat
 {
 	List<Pair> pairs = new List<Pair>();
 
-	public override bool OnSeat(Item[] items, int index) //Переопределение метода проверки условий размещения
+	public override bool OnSeat(Item[] items, int index) //РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґР° РїСЂРѕРІРµСЂРєРё СѓСЃР»РѕРІРёР№ СЂР°Р·РјРµС‰РµРЅРёСЏ
 	{
 		if(!base.OnSeat(items, index))
 			return false;
@@ -20,7 +20,7 @@ public class DestroyerCat : Cat
 		return base.OnSeat(items, index);
 	}
 
-	public override void Cancel() //Переопределение метода возврата с добавлением уничтожения объектов
+	public override void Cancel() //РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґР° РІРѕР·РІСЂР°С‚Р° СЃ РґРѕР±Р°РІР»РµРЅРёРµРј СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРІ
 	{
 		base.Cancel();
 
@@ -34,7 +34,7 @@ public class DestroyerCat : Cat
 		pairs.Clear();
 	}
 
-	void destroyItem(Item item) // Дезактивация уничтожаемых объектов и запоминание для оката при необходимости
+	void destroyItem(Item item) // Р”РµР·Р°РєС‚РёРІР°С†РёСЏ СѓРЅРёС‡С‚РѕР¶Р°РµРјС‹С… РѕР±СЉРµРєС‚РѕРІ Рё Р·Р°РїРѕРјРёРЅР°РЅРёРµ РґР»СЏ РѕРєР°С‚Р° РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё
 	{
 		if (item.Type == ItemType.Vase)
 		{

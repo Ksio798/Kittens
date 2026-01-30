@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
@@ -8,28 +8,28 @@ public class UIController : MonoBehaviour
 	public GameObject WinPanel;
 	public SpawnPlatform Spawn;
 
-	public List<CatData> CatDatas = new List<CatData>();//Информация о котах на уровне
+	public List<CatData> CatDatas = new List<CatData>();//РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєРѕС‚Р°С… РЅР° СѓСЂРѕРІРЅРµ
 	public Transform CatContent;
 
 	public CatPanelInfo PanelPrefab;
-	public void OpenMenu()//Открытие\закрытие меню пузы
+	public void OpenMenu()//РћС‚РєСЂС‹С‚РёРµ\Р·Р°РєСЂС‹С‚РёРµ РјРµРЅСЋ РїСѓР·С‹
 	{
 		InfoPanel.SetActive(false);
 		MenuPanel.SetActive(!MenuPanel.activeSelf);
 	}
 
-	public void OpenInfo()//Открытие\закрытие меню с информацией о котах
+	public void OpenInfo()//РћС‚РєСЂС‹С‚РёРµ\Р·Р°РєСЂС‹С‚РёРµ РјРµРЅСЋ СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ РєРѕС‚Р°С…
 	{
 		MenuPanel.SetActive(false);
 		InfoPanel.SetActive(!InfoPanel.activeSelf);
 	}
 
-	public void OpenWin()//Открытие панели при победе
+	public void OpenWin()//РћС‚РєСЂС‹С‚РёРµ РїР°РЅРµР»Рё РїСЂРё РїРѕР±РµРґРµ
 	{
 		WinPanel.SetActive(true);
 	}
 
-	public void Cancel()//Активация отката последнего хода по кнопке
+	public void Cancel()//РђРєС‚РёРІР°С†РёСЏ РѕС‚РєР°С‚Р° РїРѕСЃР»РµРґРЅРµРіРѕ С…РѕРґР° РїРѕ РєРЅРѕРїРєРµ
 	{
 		if (Cat.instance != null)
 			Cat.instance.Cancel();
@@ -37,13 +37,13 @@ public class UIController : MonoBehaviour
 
 	private void Start()
 	{
-		foreach (var cat in CatDatas)//Установка информации о котах на уровне
+		foreach (var cat in CatDatas)//РЈСЃС‚Р°РЅРѕРІРєР° РёРЅС„РѕСЂРјР°С†РёРё Рѕ РєРѕС‚Р°С… РЅР° СѓСЂРѕРІРЅРµ
 		{
 			CatPanelInfo panelInfo = Instantiate(PanelPrefab);
 			panelInfo.Set(cat);
 			panelInfo.transform.SetParent(CatContent);
 		}
 
-		Spawn.OnWin += OpenWin;//Подписка на событие при победе
+		Spawn.OnWin += OpenWin;//РџРѕРґРїРёСЃРєР° РЅР° СЃРѕР±С‹С‚РёРµ РїСЂРё РїРѕР±РµРґРµ
 	}
 }

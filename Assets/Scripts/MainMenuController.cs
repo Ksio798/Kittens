@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +19,7 @@ public class MainMenuController : MonoBehaviour
 	[SerializeField]
 	TextMeshProUGUI Leveltext;
 
-	void Start()//Çàãðóçêà ñîõðàíåíèÿ ïðè ñòàðòå èãðû
+	void Start()//Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ° ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ñ Ð¿Ñ€Ð¸ ÑÑ‚Ð°Ñ€Ñ‚Ðµ Ð¸Ð³Ñ€Ñ‹
 	{
 		SaveController.Instance.LoadData();
 		EducationController.ids.Clear();
@@ -28,7 +28,7 @@ public class MainMenuController : MonoBehaviour
 		{
 			LevelsButton.SetActive(true);
 			Leveltext.text = SaveController.Instance.Save.LevelsId.Count.ToString();
-			setLevels();//Âûçîâ ôóíêöèè ðàññòàíîâêè êíîïîê óðâîíåé, åñëè åñòü ñîõðàíåíèå
+			setLevels();//Ð’Ñ‹Ð·Ð¾Ð² Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ñ€Ð°ÑÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¸ ÐºÐ½Ð¾Ð¿Ð¾Ðº ÑƒÑ€Ð²Ð¾Ð½ÐµÐ¹, ÐµÑÐ»Ð¸ ÐµÑÑ‚ÑŒ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ðµ
 		}
 		else
 		{
@@ -36,17 +36,17 @@ public class MainMenuController : MonoBehaviour
 		}
 	}
 
-	public void Del()//Óäàëåíèå ñîõðàíåíèÿ ïî êíîïêå
+	public void Del()//Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ñ Ð¿Ð¾ ÐºÐ½Ð¾Ð¿ÐºÐµ
 	{
 		SaveController.Instance.DeleteSave();
 	}
 
-	public void OpenPanel()//Îòðûòèå\çàêðûòèå ïàíåëè ñ óðîâíÿìè ïî êíîïêå
+	public void OpenPanel()//ÐžÑ‚Ñ€Ñ‹Ñ‚Ð¸Ðµ\Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿Ð°Ð½ÐµÐ»Ð¸ Ñ ÑƒÑ€Ð¾Ð²Ð½ÑÐ¼Ð¸ Ð¿Ð¾ ÐºÐ½Ð¾Ð¿ÐºÐµ
 	{
 		LevelsPanel.SetActive(!LevelsPanel.activeSelf);
 	}
 
-	void setLevels()//Ðàçìåùåíèå êíîïîê äëÿ âûáîðà óðîâíÿ
+	void setLevels()//Ð Ð°Ð·Ð¼ÐµÑ‰ÐµÐ½Ð¸Ðµ ÐºÐ½Ð¾Ð¿Ð¾Ðº Ð´Ð»Ñ Ð²Ñ‹Ð±Ð¾Ñ€Ð° ÑƒÑ€Ð¾Ð²Ð½Ñ
 	{
 		int index = 0;
 
@@ -54,9 +54,9 @@ public class MainMenuController : MonoBehaviour
 		{
 			int r = Random.Range(0, SpriteDecor.Count);
 
-			LineElement line = Instantiate(LinesPrefabs[index]);//Ãåíåðàöèÿ ÷àñòè èçîáðàæåíèÿ èç ïðåôàáà
+			LineElement line = Instantiate(LinesPrefabs[index]);//Ð“ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ñ‡Ð°ÑÑ‚Ð¸ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¸Ð· Ð¿Ñ€ÐµÑ„Ð°Ð±Ð°
 			line.SetInfo(SpriteDecor[r], i.ToString());
-			line.LevelButton.onClick.AddListener(() => { Loader.LoadByIndex(i); });//Íàçíà÷åíèå êàæäîé êíîïêå ôóíêöèè ïåðåõîäà íà íóæíûé óðîâåíü
+			line.LevelButton.onClick.AddListener(() => { Loader.LoadByIndex(i); });//ÐÐ°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÐºÐ°Ð¶Ð´Ð¾Ð¹ ÐºÐ½Ð¾Ð¿ÐºÐµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð¿ÐµÑ€ÐµÑ…Ð¾Ð´Ð° Ð½Ð° Ð½ÑƒÐ¶Ð½Ñ‹Ð¹ ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ
 			line.transform.SetParent(LevelsParent);
 			index++;
 			if (index > LinesPrefabs.Count - 1)

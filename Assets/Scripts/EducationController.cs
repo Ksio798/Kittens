@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EducationController : MonoBehaviour
 {
-	public List<EducationData> Educations = new List<EducationData>();//Список файлов с обычением на кровне
+	public List<EducationData> Educations = new List<EducationData>();//РЎРїРёСЃРѕРє С„Р°Р№Р»РѕРІ СЃ РѕР±С‹С‡РµРЅРёРµРј РЅР° РєСЂРѕРІРЅРµ
 	public EdPanel PanelPrefab;
 	public EdPanel ImagePanelPrefab;
 
@@ -17,16 +17,16 @@ public class EducationController : MonoBehaviour
 
 	void Start()
 	{
-		// При старте: если шагов нет или в этой сцене обучение уже показывали - ничего не делаем
+		// РџСЂРё СЃС‚Р°СЂС‚Рµ: РµСЃР»Рё С€Р°РіРѕРІ РЅРµС‚ РёР»Рё РІ СЌС‚РѕР№ СЃС†РµРЅРµ РѕР±СѓС‡РµРЅРёРµ СѓР¶Рµ РїРѕРєР°Р·С‹РІР°Р»Рё - РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°РµРј
 		if (Educations.Count == 0 || ids.Contains(SceneManager.GetActiveScene().buildIndex)) return;
 
-		EdCanvas.SetActive(true); // Включаем UI обучения
-		ids.Add(SceneManager.GetActiveScene().buildIndex); // Запоминаем, что в этой сцене обучение уже показано
+		EdCanvas.SetActive(true); // Р’РєР»СЋС‡Р°РµРј UI РѕР±СѓС‡РµРЅРёСЏ
+		ids.Add(SceneManager.GetActiveScene().buildIndex); // Р—Р°РїРѕРјРёРЅР°РµРј, С‡С‚Рѕ РІ СЌС‚РѕР№ СЃС†РµРЅРµ РѕР±СѓС‡РµРЅРёРµ СѓР¶Рµ РїРѕРєР°Р·Р°РЅРѕ
 
-		setPanel(); // Создаём и показываем первый шаг обучения
+		setPanel(); // РЎРѕР·РґР°С‘Рј Рё РїРѕРєР°Р·С‹РІР°РµРј РїРµСЂРІС‹Р№ С€Р°Рі РѕР±СѓС‡РµРЅРёСЏ
 	}
 
-	public void NextEd()//Переходим к следующему шагу обучения или закрываем, если обычение закончилось
+	public void NextEd()//РџРµСЂРµС…РѕРґРёРј Рє СЃР»РµРґСѓСЋС‰РµРјСѓ С€Р°РіСѓ РѕР±СѓС‡РµРЅРёСЏ РёР»Рё Р·Р°РєСЂС‹РІР°РµРј, РµСЃР»Рё РѕР±С‹С‡РµРЅРёРµ Р·Р°РєРѕРЅС‡РёР»РѕСЃСЊ
 	{
 		index++;
 
@@ -36,13 +36,13 @@ public class EducationController : MonoBehaviour
 			setPanel();
 	}
 
-	void setPanel()// Создаёт панель для текущего шага (Educations[index]) и заполняет её данными
+	void setPanel()// РЎРѕР·РґР°С‘С‚ РїР°РЅРµР»СЊ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ С€Р°РіР° (Educations[index]) Рё Р·Р°РїРѕР»РЅСЏРµС‚ РµС‘ РґР°РЅРЅС‹РјРё
 	{
 		if (oldPanel != null)
 			Destroy(oldPanel.gameObject);
 
 		EdPanel ed;
-		if (Educations[index].EdSprite != null)// Выбираем тип панели с изображением или без
+		if (Educations[index].EdSprite != null)// Р’С‹Р±РёСЂР°РµРј С‚РёРї РїР°РЅРµР»Рё СЃ РёР·РѕР±СЂР°Р¶РµРЅРёРµРј РёР»Рё Р±РµР·
 			ed = Instantiate(ImagePanelPrefab);
 		else
 			ed = Instantiate(PanelPrefab);

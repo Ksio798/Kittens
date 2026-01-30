@@ -1,8 +1,8 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class ShyCat : Cat
 {
-	public override bool OnSeat(Item[] items, int index) //Переопределение метода проверки условий размещения, на полке вообще не должно быть котов
+	public override bool OnSeat(Item[] items, int index) //РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґР° РїСЂРѕРІРµСЂРєРё СѓСЃР»РѕРІРёР№ СЂР°Р·РјРµС‰РµРЅРёСЏ, РЅР° РїРѕР»РєРµ РІРѕРѕР±С‰Рµ РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РєРѕС‚РѕРІ
 	{
 		bool result = true;
 		foreach (Item item in items)

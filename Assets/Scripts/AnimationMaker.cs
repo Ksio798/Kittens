@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +14,7 @@ public class AnimationMaker : MonoBehaviour
 	float t;
 	int index = 0;
 
-    void Update()//Таймер срабатывающий раз в interval секунд
+    void Update()//РўР°Р№РјРµСЂ СЃСЂР°Р±Р°С‚С‹РІР°СЋС‰РёР№ СЂР°Р· РІ interval СЃРµРєСѓРЅРґ
 	{
 		t += Time.deltaTime;
 		if (t >= interval)
@@ -24,7 +24,7 @@ public class AnimationMaker : MonoBehaviour
 		}
 	}
 
-	void animationMake() // Поочередная смена спрайтов для анимации
+	void animationMake() // РџРѕРѕС‡РµСЂРµРґРЅР°СЏ СЃРјРµРЅР° СЃРїСЂР°Р№С‚РѕРІ РґР»СЏ Р°РЅРёРјР°С†РёРё
 	{
 		back.sprite = spritesBack[index];
 		index++;

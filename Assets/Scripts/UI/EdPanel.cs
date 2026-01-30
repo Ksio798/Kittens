@@ -1,13 +1,13 @@
-using TMPro;
+п»їusing TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EdPanel : MonoBehaviour//Скрипт для панели с обучением
+public class EdPanel : MonoBehaviour//РЎРєСЂРёРїС‚ РґР»СЏ РїР°РЅРµР»Рё СЃ РѕР±СѓС‡РµРЅРёРµРј
 {
     public TextMeshProUGUI TextInfo;
     public Image InfoImage;
 
-    public void SetInfo(EducationData ed)//Установка значений из полученного EducationData
+    public void SetInfo(EducationData ed)//РЈСЃС‚Р°РЅРѕРІРєР° Р·РЅР°С‡РµРЅРёР№ РёР· РїРѕР»СѓС‡РµРЅРЅРѕРіРѕ EducationData
 	{
         TextInfo.text = ed.EdInfo;
         if (InfoImage != null)

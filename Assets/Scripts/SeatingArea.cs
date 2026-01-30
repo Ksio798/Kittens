@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using UnityEngine;
 
-public class SeatingArea : MonoBehaviour//Логика поведения одной полки
+public class SeatingArea : MonoBehaviour//Р›РѕРіРёРєР° РїРѕРІРµРґРµРЅРёСЏ РѕРґРЅРѕР№ РїРѕР»РєРё
 {
 	public GameObject PointParent;
 	public int SeatCount = 5;
@@ -16,7 +16,7 @@ public class SeatingArea : MonoBehaviour//Логика поведения одной полки
 	{
 		Items = new Item[SeatCount];
 
-		for (int i = 0; i < SeatCount; i++)// Создаём места посадки и подписываемся на их события
+		for (int i = 0; i < SeatCount; i++)// РЎРѕР·РґР°С‘Рј РјРµСЃС‚Р° РїРѕСЃР°РґРєРё Рё РїРѕРґРїРёСЃС‹РІР°РµРјСЃСЏ РЅР° РёС… СЃРѕР±С‹С‚РёСЏ
 		{
 			SeatPoint point = Instantiate(PointPrefab);
 			point.transform.position = PointParent.transform.position;
@@ -28,7 +28,7 @@ public class SeatingArea : MonoBehaviour//Логика поведения одной полки
 			point.Order = i;
 			seatPoints.Add(point);
 
-			if (i < AddedItems.Count && AddedItems[i] != null)// Если задан стартовый предмет для этого места - создаём его и размещаем в точке
+			if (i < AddedItems.Count && AddedItems[i] != null)// Р•СЃР»Рё Р·Р°РґР°РЅ СЃС‚Р°СЂС‚РѕРІС‹Р№ РїСЂРµРґРјРµС‚ РґР»СЏ СЌС‚РѕРіРѕ РјРµСЃС‚Р° - СЃРѕР·РґР°С‘Рј РµРіРѕ Рё СЂР°Р·РјРµС‰Р°РµРј РІ С‚РѕС‡РєРµ
 			{
 				Item item = Instantiate(AddedItems[i]);
 				item.transform.position = point.transform.position;
@@ -37,31 +37,31 @@ public class SeatingArea : MonoBehaviour//Логика поведения одной полки
 		}
 	}
 
-	private void OnEnter(Cat cat, SeatPoint t)// Вызывается, когда кот попадает в зону конкретной точки посадки
+	private void OnEnter(Cat cat, SeatPoint t)// Р’С‹Р·С‹РІР°РµС‚СЃСЏ, РєРѕРіРґР° РєРѕС‚ РїРѕРїР°РґР°РµС‚ РІ Р·РѕРЅСѓ РєРѕРЅРєСЂРµС‚РЅРѕР№ С‚РѕС‡РєРё РїРѕСЃР°РґРєРё
 	{
 		currentCat = cat;
 		currentPoint = t;
-		currentCat.OnUp += OnUp;//Подписка на событие от кота, пытаемся посадить на полку если палец отпущен
+		currentCat.OnUp += OnUp;//РџРѕРґРїРёСЃРєР° РЅР° СЃРѕР±С‹С‚РёРµ РѕС‚ РєРѕС‚Р°, РїС‹С‚Р°РµРјСЃСЏ РїРѕСЃР°РґРёС‚СЊ РЅР° РїРѕР»РєСѓ РµСЃР»Рё РїР°Р»РµС† РѕС‚РїСѓС‰РµРЅ
 	}
 
-	private void OnExit(Cat cat, SeatPoint t) // Вызывается, когда кот покидает зону точки посадки
+	private void OnExit(Cat cat, SeatPoint t) // Р’С‹Р·С‹РІР°РµС‚СЃСЏ, РєРѕРіРґР° РєРѕС‚ РїРѕРєРёРґР°РµС‚ Р·РѕРЅСѓ С‚РѕС‡РєРё РїРѕСЃР°РґРєРё
 	{
-		if (currentCat == cat && currentPoint == t)// Снимаем только если это тот же кот и та же точка
+		if (currentCat == cat && currentPoint == t)// РЎРЅРёРјР°РµРј С‚РѕР»СЊРєРѕ РµСЃР»Рё СЌС‚Рѕ С‚РѕС‚ Р¶Рµ РєРѕС‚ Рё С‚Р° Р¶Рµ С‚РѕС‡РєР°
 		{
-			currentCat.OnUp -= OnUp;// Убираем обработчик, чтобы не сработал в другом месте
+			currentCat.OnUp -= OnUp;// РЈР±РёСЂР°РµРј РѕР±СЂР°Р±РѕС‚С‡РёРє, С‡С‚РѕР±С‹ РЅРµ СЃСЂР°Р±РѕС‚Р°Р» РІ РґСЂСѓРіРѕРј РјРµСЃС‚Рµ
 			currentCat = null;
 			currentPoint = null;
 		}
 	}
 
-	private void OnUp(Cat c)// Вызывается при отпускании кота (конец перетаскивания), если кот был над точкой
+	private void OnUp(Cat c)// Р’С‹Р·С‹РІР°РµС‚СЃСЏ РїСЂРё РѕС‚РїСѓСЃРєР°РЅРёРё РєРѕС‚Р° (РєРѕРЅРµС† РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёСЏ), РµСЃР»Рё РєРѕС‚ Р±С‹Р» РЅР°Рґ С‚РѕС‡РєРѕР№
 	{
 		if (currentCat != null && currentPoint != null)
 		{
-			if (currentCat.OnSeat(Items, currentPoint.Order))// Проверяем, можно ли посадить кота в эту точку, исходя из правил кота и текущих Items
+			if (currentCat.OnSeat(Items, currentPoint.Order))// РџСЂРѕРІРµСЂСЏРµРј, РјРѕР¶РЅРѕ Р»Рё РїРѕСЃР°РґРёС‚СЊ РєРѕС‚Р° РІ СЌС‚Сѓ С‚РѕС‡РєСѓ, РёСЃС…РѕРґСЏ РёР· РїСЂР°РІРёР» РєРѕС‚Р° Рё С‚РµРєСѓС‰РёС… Items
 			{
-				Items[currentPoint.Order] = currentCat.GetComponent<Item>();//Добавляем кота в список объектов на полке
-				currentCat.SetPos(currentPoint.transform);//Вызываем метод смены позиции
+				Items[currentPoint.Order] = currentCat.GetComponent<Item>();//Р”РѕР±Р°РІР»СЏРµРј РєРѕС‚Р° РІ СЃРїРёСЃРѕРє РѕР±СЉРµРєС‚РѕРІ РЅР° РїРѕР»РєРµ
+				currentCat.SetPos(currentPoint.transform);//Р’С‹Р·С‹РІР°РµРј РјРµС‚РѕРґ СЃРјРµРЅС‹ РїРѕР·РёС†РёРё
 			}
 			currentCat.OnUp -= OnUp;
 			currentCat = null;
@@ -70,12 +70,12 @@ public class SeatingArea : MonoBehaviour//Логика поведения одной полки
 	}
 
 
-	private void addItem(Item i, int index)// Записывает предмет в массив состояния мест (вызывается событием SeatPoint)
+	private void addItem(Item i, int index)// Р—Р°РїРёСЃС‹РІР°РµС‚ РїСЂРµРґРјРµС‚ РІ РјР°СЃСЃРёРІ СЃРѕСЃС‚РѕСЏРЅРёСЏ РјРµСЃС‚ (РІС‹Р·С‹РІР°РµС‚СЃСЏ СЃРѕР±С‹С‚РёРµРј SeatPoint)
 	{
 		Items[index] = i;
 	}
 
-	private void delItem(int index)// Очищает слот в массиве состояния мест (вызывается событием SeatPoint)
+	private void delItem(int index)// РћС‡РёС‰Р°РµС‚ СЃР»РѕС‚ РІ РјР°СЃСЃРёРІРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ РјРµСЃС‚ (РІС‹Р·С‹РІР°РµС‚СЃСЏ СЃРѕР±С‹С‚РёРµРј SeatPoint)
 	{
 		Items[index] = null;
 	}

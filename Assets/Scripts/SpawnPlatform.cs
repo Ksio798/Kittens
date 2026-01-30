@@ -1,13 +1,13 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnPlatform : MonoBehaviour
 {
-	public List<Cat> Cats = new List<Cat>();//Список ппрефабов котов на уровне
+	public List<Cat> Cats = new List<Cat>();//РЎРїРёСЃРѕРє РїРїСЂРµС„Р°Р±РѕРІ РєРѕС‚РѕРІ РЅР° СѓСЂРѕРІРЅРµ
 	public Action OnWin;
 
-	void Start()//Генерируем котов из префабов и садим в нужную позицию
+	void Start()//Р“РµРЅРµСЂРёСЂСѓРµРј РєРѕС‚РѕРІ РёР· РїСЂРµС„Р°Р±РѕРІ Рё СЃР°РґРёРј РІ РЅСѓР¶РЅСѓСЋ РїРѕР·РёС†РёСЋ
 	{
 		for (int i = 0; i < Cats.Count; i++)
 		{
@@ -17,7 +17,7 @@ public class SpawnPlatform : MonoBehaviour
 		}
 	}
 
-	void OnTransformChildrenChanged()//Если на стартовой позиции не осталось котов, вызываем сообщение о победе
+	void OnTransformChildrenChanged()//Р•СЃР»Рё РЅР° СЃС‚Р°СЂС‚РѕРІРѕР№ РїРѕР·РёС†РёРё РЅРµ РѕСЃС‚Р°Р»РѕСЃСЊ РєРѕС‚РѕРІ, РІС‹Р·С‹РІР°РµРј СЃРѕРѕР±С‰РµРЅРёРµ Рѕ РїРѕР±РµРґРµ
 	{
 		if (transform.childCount == 0)
 			OnWin?.Invoke();

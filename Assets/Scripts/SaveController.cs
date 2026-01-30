@@ -1,28 +1,28 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 
 [System.Serializable]
-public class SaveData//Сохраняемая информация
+public class SaveData//РЎРѕС…СЂР°РЅСЏРµРјР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ
 {
 	public List<int> LevelsId = new List<int>();
 }
 
 public class SaveController : MonoBehaviour
 {
-	public static SaveController Instance;//Статичный экземпляр объекта для доступа в любой части кода
+	public static SaveController Instance;//РЎС‚Р°С‚РёС‡РЅС‹Р№ СЌРєР·РµРјРїР»СЏСЂ РѕР±СЉРµРєС‚Р° РґР»СЏ РґРѕСЃС‚СѓРїР° РІ Р»СЋР±РѕР№ С‡Р°СЃС‚Рё РєРѕРґР°
 
 	public string FileName = "save.svs";
 	public SaveData Save = null;
 
-	void Awake()//Назначение синглтона
+	void Awake()//РќР°Р·РЅР°С‡РµРЅРёРµ СЃРёРЅРіР»С‚РѕРЅР°
 	{
 		if (Instance == null)
 		{
 			Instance = this;
-			DontDestroyOnLoad(gameObject);//Отключение удаления объекта при переходе на новую сцену
+			DontDestroyOnLoad(gameObject);//РћС‚РєР»СЋС‡РµРЅРёРµ СѓРґР°Р»РµРЅРёСЏ РѕР±СЉРµРєС‚Р° РїСЂРё РїРµСЂРµС…РѕРґРµ РЅР° РЅРѕРІСѓСЋ СЃС†РµРЅСѓ
 		}
 		else
 		{
@@ -30,7 +30,7 @@ public class SaveController : MonoBehaviour
 		}
 	}
 
-	public void CreateSave(int ID)//Добавление информации в существующее сохранение или создание нового
+	public void CreateSave(int ID)//Р”РѕР±Р°РІР»РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё РІ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ СЃРѕС…СЂР°РЅРµРЅРёРµ РёР»Рё СЃРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ
 	{
 		if (Save == null)
 		{
@@ -45,7 +45,7 @@ public class SaveController : MonoBehaviour
 		}
 	}
 
-	public void SaveData()//Запись сохранения в файл
+	public void SaveData()//Р—Р°РїРёСЃСЊ СЃРѕС…СЂР°РЅРµРЅРёСЏ РІ С„Р°Р№Р»
 	{
 		BinaryFormatter bf = new BinaryFormatter();
 
@@ -64,7 +64,7 @@ public class SaveController : MonoBehaviour
 		}
 	}
 
-	public void LoadData()//Загрузка сохранения из файла
+	public void LoadData()//Р—Р°РіСЂСѓР·РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РёР· С„Р°Р№Р»Р°
 	{
 		BinaryFormatter bf = new BinaryFormatter();
 
@@ -83,7 +83,7 @@ public class SaveController : MonoBehaviour
 		Save = null;
 		File.Delete(getFilePath());
 	}
-	string getFilePath()//Автоматическое получение пути к файлу сохранения
+	string getFilePath()//РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ РїРѕР»СѓС‡РµРЅРёРµ РїСѓС‚Рё Рє С„Р°Р№Р»Сѓ СЃРѕС…СЂР°РЅРµРЅРёСЏ
 	{
 		string filePath = Path.Combine(Application.persistentDataPath, FileName);
 		return filePath;

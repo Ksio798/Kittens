@@ -1,9 +1,9 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEdData", menuName = "Game Data/Education")]//Создание пункта в меню
+[CreateAssetMenu(fileName = "NewEdData", menuName = "Game Data/Education")]//РЎРѕР·РґР°РЅРёРµ РїСѓРЅРєС‚Р° РІ РјРµРЅСЋ
 public class EducationData : ScriptableObject
 {
-	//Информация для конкретного шага обучения
+	//РРЅС„РѕСЂРјР°С†РёСЏ РґР»СЏ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ С€Р°РіР° РѕР±СѓС‡РµРЅРёСЏ
 	public Sprite EdSprite;
 	[TextArea(3, 10)]
 	public string EdInfo;

@@ -1,8 +1,8 @@
-using TMPro;
+п»їusing TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LineElement : MonoBehaviour//Скрипт для линии с кнопкой при выборе уровня
+public class LineElement : MonoBehaviour//РЎРєСЂРёРїС‚ РґР»СЏ Р»РёРЅРёРё СЃ РєРЅРѕРїРєРѕР№ РїСЂРё РІС‹Р±РѕСЂРµ СѓСЂРѕРІРЅСЏ
 {
 	[SerializeField]
 	Image levelIm;
@@ -12,7 +12,7 @@ public class LineElement : MonoBehaviour//Скрипт для линии с кнопкой при выборе 
 	public Button LevelButton;
 
 
-	public void SetInfo(Sprite s, string text)//Установка необходимого изображения и номера уровня
+	public void SetInfo(Sprite s, string text)//РЈСЃС‚Р°РЅРѕРІРєР° РЅРµРѕР±С…РѕРґРёРјРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ Рё РЅРѕРјРµСЂР° СѓСЂРѕРІРЅСЏ
 	{
 		levelIm.sprite = s;
 		leveltext.text = text;

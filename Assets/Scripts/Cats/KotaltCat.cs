@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using UnityEngine;
 
 public class KotaltCat : Cat
 {
 	List<Pair> pairs = new List<Pair> ();
 
-	public override bool OnSeat(Item[] items, int index) //Переопределение метода проверки условий размещения
+	public override bool OnSeat(Item[] items, int index) //РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґР° РїСЂРѕРІРµСЂРєРё СѓСЃР»РѕРІРёР№ СЂР°Р·РјРµС‰РµРЅРёСЏ
 	{
 		if(!NearSame(items, index))
 			return false;
@@ -30,7 +30,7 @@ public class KotaltCat : Cat
 		return NearSame(items, index);
 	}
 
-	public override void Cancel()  //Переопределение метода возврата с добавлением уничтожения объектов
+	public override void Cancel()  //РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґР° РІРѕР·РІСЂР°С‚Р° СЃ РґРѕР±Р°РІР»РµРЅРёРµРј СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРІ
 	{
 		base.Cancel();
 

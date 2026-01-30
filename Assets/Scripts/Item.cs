@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public enum ItemType
 {
@@ -10,7 +10,7 @@ public enum ItemColor
 	Black, White, Common, Kotalt, Destroyer
 }
 
-public class Item : MonoBehaviour //Характеристики конкретного объекта
+public class Item : MonoBehaviour //РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ РѕР±СЉРµРєС‚Р°
 {
 	public ItemType Type;
 	public ItemColor Color;

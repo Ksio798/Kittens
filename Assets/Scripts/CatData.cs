@@ -1,8 +1,8 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "NewCatData", menuName = "Game Data/Cat")]//Создание пункта в меню
-public class CatData : ScriptableObject //Скрипт для хранения полной информации о конкретном коте
+[CreateAssetMenu(fileName = "NewCatData", menuName = "Game Data/Cat")]//РЎРѕР·РґР°РЅРёРµ РїСѓРЅРєС‚Р° РІ РјРµРЅСЋ
+public class CatData : ScriptableObject //РЎРєСЂРёРїС‚ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РїРѕР»РЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё Рѕ РєРѕРЅРєСЂРµС‚РЅРѕРј РєРѕС‚Рµ
 {
 	public Sprite CatSprite;
 	public string CatName;

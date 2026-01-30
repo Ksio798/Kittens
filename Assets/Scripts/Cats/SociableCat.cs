@@ -1,8 +1,8 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class SociableCat : Cat
 {
-	public override bool OnSeat(Item[] items, int index) //Переопределение метода проверки условий размещения, рядом обязан быть кот
+	public override bool OnSeat(Item[] items, int index) //РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґР° РїСЂРѕРІРµСЂРєРё СѓСЃР»РѕРІРёР№ СЂР°Р·РјРµС‰РµРЅРёСЏ, СЂСЏРґРѕРј РѕР±СЏР·Р°РЅ Р±С‹С‚СЊ РєРѕС‚
 	{
 		bool result = false;
 

@@ -1,16 +1,16 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     public SpawnPlatform Spawn;
 
-    void Start()//Подписка на событие при победе
+    void Start()//РџРѕРґРїРёСЃРєР° РЅР° СЃРѕР±С‹С‚РёРµ РїСЂРё РїРѕР±РµРґРµ
     {
         Spawn.OnWin += SaveLevel;
     }
 
-    void SaveLevel()//Сохрание текущей пройденной сцены
+    void SaveLevel()//РЎРѕС…СЂР°РЅРёРµ С‚РµРєСѓС‰РµР№ РїСЂРѕР№РґРµРЅРЅРѕР№ СЃС†РµРЅС‹
     {
         if (SaveController.Instance == null)
             return;

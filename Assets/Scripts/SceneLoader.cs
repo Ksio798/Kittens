@@ -1,26 +1,26 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
-	public void LoadByIndex(int index)//Загрузка сцены по её индексу
+	public void LoadByIndex(int index)//Р—Р°РіСЂСѓР·РєР° СЃС†РµРЅС‹ РїРѕ РµС‘ РёРЅРґРµРєСЃСѓ
 	{
 		SceneManager.LoadScene(index);
 	}
 
-	public void ReLoad()//Перезагрузка уровня
+	public void ReLoad()//РџРµСЂРµР·Р°РіСЂСѓР·РєР° СѓСЂРѕРІРЅСЏ
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
-	public void LoadNext()//Загрузка следующего уровня
+	public void LoadNext()//Р—Р°РіСЂСѓР·РєР° СЃР»РµРґСѓСЋС‰РµРіРѕ СѓСЂРѕРІРЅСЏ
 	{
 		if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		else
-			SceneManager.LoadScene(0);//Если уровни закончились переход к главному меню
+			SceneManager.LoadScene(0);//Р•СЃР»Рё СѓСЂРѕРІРЅРё Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ РїРµСЂРµС…РѕРґ Рє РіР»Р°РІРЅРѕРјСѓ РјРµРЅСЋ
 	}
 
-	public void LoadLast()//Загрузка последнего непройденного уровня
+	public void LoadLast()//Р—Р°РіСЂСѓР·РєР° РїРѕСЃР»РµРґРЅРµРіРѕ РЅРµРїСЂРѕР№РґРµРЅРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
 	{
 		if (SaveController.Instance.Save != null && SaveController.Instance.Save.LevelsId.Count > 0)
 		{
@@ -30,6 +30,6 @@ public class SceneLoader : MonoBehaviour
 			SceneManager.LoadScene(index);
 		}
 		else
-			SceneManager.LoadScene(1);//Если уровни ещё не пройдены переход на уровень 1
+			SceneManager.LoadScene(1);//Р•СЃР»Рё СѓСЂРѕРІРЅРё РµС‰С‘ РЅРµ РїСЂРѕР№РґРµРЅС‹ РїРµСЂРµС…РѕРґ РЅР° СѓСЂРѕРІРµРЅСЊ 1
 	}
 }

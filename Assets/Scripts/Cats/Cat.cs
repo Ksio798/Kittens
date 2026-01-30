@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,27 +10,27 @@ public class Pair
 }
 public class Cat : MonoBehaviour
 {
-	public static Cat instance = null; // Текущий "активный" кот (последний установленный через SetPos)
+	public static Cat instance = null; // РўРµРєСѓС‰РёР№ "Р°РєС‚РёРІРЅС‹Р№" РєРѕС‚ (РїРѕСЃР»РµРґРЅРёР№ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Р№ С‡РµСЂРµР· SetPos)
 
-	public Action<Cat> OnChangeParent; // Событие при смене родителя (перемещение между слотами)
-	public Action<Cat> OnUp;           // Событие при отпускании мыши (окончание перетаскивания)
+	public Action<Cat> OnChangeParent; // РЎРѕР±С‹С‚РёРµ РїСЂРё СЃРјРµРЅРµ СЂРѕРґРёС‚РµР»СЏ (РїРµСЂРµРјРµС‰РµРЅРёРµ РјРµР¶РґСѓ СЃР»РѕС‚Р°РјРё)
+	public Action<Cat> OnUp;           // РЎРѕР±С‹С‚РёРµ РїСЂРё РѕС‚РїСѓСЃРєР°РЅРёРё РјС‹С€Рё (РѕРєРѕРЅС‡Р°РЅРёРµ РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёСЏ)
 
-	public Sprite CatSprite; // Спрайт кота, назначаемый в Start
+	public Sprite CatSprite; // РЎРїСЂР°Р№С‚ РєРѕС‚Р°, РЅР°Р·РЅР°С‡Р°РµРјС‹Р№ РІ Start
 
-	protected bool CanMove = true; // Разрешение на перетаскивание/движение
+	protected bool CanMove = true; // Р Р°Р·СЂРµС€РµРЅРёРµ РЅР° РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёРµ/РґРІРёР¶РµРЅРёРµ
 
-	protected Item _item; // Компонент Item на этом же объекте (цвет/тип и т.д.)
-	protected Transform oldParent; // Родитель до перемещения (для отката)
-	protected Vector3 oldPos; // Позиция до начала перетаскивания
-	protected float speed = 15f; // Скорость "подтягивания" к курсору при перетаскивании
-	protected Vector3 dragOffset; // Смещение, чтобы объект не прыгал в центр курсора
-	protected SpriteRenderer spriteRenderer; // Рендерер спрайта кота
+	protected Item _item; // РљРѕРјРїРѕРЅРµРЅС‚ Item РЅР° СЌС‚РѕРј Р¶Рµ РѕР±СЉРµРєС‚Рµ (С†РІРµС‚/С‚РёРї Рё С‚.Рґ.)
+	protected Transform oldParent; // Р РѕРґРёС‚РµР»СЊ РґРѕ РїРµСЂРµРјРµС‰РµРЅРёСЏ (РґР»СЏ РѕС‚РєР°С‚Р°)
+	protected Vector3 oldPos; // РџРѕР·РёС†РёСЏ РґРѕ РЅР°С‡Р°Р»Р° РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёСЏ
+	protected float speed = 15f; // РЎРєРѕСЂРѕСЃС‚СЊ "РїРѕРґС‚СЏРіРёРІР°РЅРёСЏ" Рє РєСѓСЂСЃРѕСЂСѓ РїСЂРё РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёРё
+	protected Vector3 dragOffset; // РЎРјРµС‰РµРЅРёРµ, С‡С‚РѕР±С‹ РѕР±СЉРµРєС‚ РЅРµ РїСЂС‹РіР°Р» РІ С†РµРЅС‚СЂ РєСѓСЂСЃРѕСЂР°
+	protected SpriteRenderer spriteRenderer; // Р РµРЅРґРµСЂРµСЂ СЃРїСЂР°Р№С‚Р° РєРѕС‚Р°
 
-	protected AudioSource audioSource; // Источник звука для проигрывания клипа при установке
+	protected AudioSource audioSource; // РСЃС‚РѕС‡РЅРёРє Р·РІСѓРєР° РґР»СЏ РїСЂРѕРёРіСЂС‹РІР°РЅРёСЏ РєР»РёРїР° РїСЂРё СѓСЃС‚Р°РЅРѕРІРєРµ
 	[SerializeField]
-	protected List<AudioClip> placeSounds; // Набор звуков при "посадке" кота в слот
+	protected List<AudioClip> placeSounds; // РќР°Р±РѕСЂ Р·РІСѓРєРѕРІ РїСЂРё "РїРѕСЃР°РґРєРµ" РєРѕС‚Р° РІ СЃР»РѕС‚
 
-	public void SetPos(Transform t) // Ставим кота в новую позицию, устанавливаем нового родителя и проигрываем звук
+	public void SetPos(Transform t) // РЎС‚Р°РІРёРј РєРѕС‚Р° РІ РЅРѕРІСѓСЋ РїРѕР·РёС†РёСЋ, СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅРѕРІРѕРіРѕ СЂРѕРґРёС‚РµР»СЏ Рё РїСЂРѕРёРіСЂС‹РІР°РµРј Р·РІСѓРє
 	{
 		transform.position = new Vector3(t.position.x, t.position.y + spriteRenderer.bounds.size.y / 2, t.position.z);
 		CanMove = false;
@@ -44,12 +44,12 @@ public class Cat : MonoBehaviour
 		}
 	}
 
-	public virtual bool OnSeat(Item[] items, int index) // Разрешаем посадку, если рядом нет котов другого цвета и на полке нет врага
+	public virtual bool OnSeat(Item[] items, int index) // Р Р°Р·СЂРµС€Р°РµРј РїРѕСЃР°РґРєСѓ, РµСЃР»Рё СЂСЏРґРѕРј РЅРµС‚ РєРѕС‚РѕРІ РґСЂСѓРіРѕРіРѕ С†РІРµС‚Р° Рё РЅР° РїРѕР»РєРµ РЅРµС‚ РІСЂР°РіР°
 	{
 		return NearSame(items, index) && !FindEnemy(items);
 	}
 
-	public virtual void Cancel() // Откат к исходному положению
+	public virtual void Cancel() // РћС‚РєР°С‚ Рє РёСЃС…РѕРґРЅРѕРјСѓ РїРѕР»РѕР¶РµРЅРёСЋ
 	{
 		if (oldParent == transform.parent)
 			return;
@@ -59,7 +59,7 @@ public class Cat : MonoBehaviour
 		CanMove = true;
 	}
 
-	protected void Start()//Получаем ссылки на объекты и запоминаем значения по умолчанию
+	protected void Start()//РџРѕР»СѓС‡Р°РµРј СЃСЃС‹Р»РєРё РЅР° РѕР±СЉРµРєС‚С‹ Рё Р·Р°РїРѕРјРёРЅР°РµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.sprite = CatSprite;
@@ -68,12 +68,12 @@ public class Cat : MonoBehaviour
 		audioSource = GetComponent<AudioSource>();
 	}
 
-	void OnTransformParentChanged() // Unity-колбэк, вызывается при смене transform.parent, необходимо для обновления списка объектов на полке
+	void OnTransformParentChanged() // Unity-РєРѕР»Р±СЌРє, РІС‹Р·С‹РІР°РµС‚СЃСЏ РїСЂРё СЃРјРµРЅРµ transform.parent, РЅРµРѕР±С…РѕРґРёРјРѕ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃРїРёСЃРєР° РѕР±СЉРµРєС‚РѕРІ РЅР° РїРѕР»РєРµ
 	{
 		OnChangeParent?.Invoke(this);
 	}
 
-	protected bool NearSame(Item[] items, int index) // Проверка, по соседству не должно быть кота другого цвета
+	protected bool NearSame(Item[] items, int index) // РџСЂРѕРІРµСЂРєР°, РїРѕ СЃРѕСЃРµРґСЃС‚РІСѓ РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РєРѕС‚Р° РґСЂСѓРіРѕРіРѕ С†РІРµС‚Р°
 	{
 		bool result = true;
 		if (index - 1 >= 0 && items[index - 1] != null)
@@ -87,7 +87,7 @@ public class Cat : MonoBehaviour
 		return result;
 	}
 
-	protected bool FindEnemy(Item[] items) // Проверка есть ли в массиве предмет типа Enemy
+	protected bool FindEnemy(Item[] items) // РџСЂРѕРІРµСЂРєР° РµСЃС‚СЊ Р»Рё РІ РјР°СЃСЃРёРІРµ РїСЂРµРґРјРµС‚ С‚РёРїР° Enemy
 	{
 		bool result = false;
 
@@ -110,20 +110,20 @@ public class Cat : MonoBehaviour
 		spriteRenderer.sortingOrder = 5;
 	}
 
-	protected void OnMouseDrag() // Плавно тянем кота к позиции курсора с учётом смещения
+	protected void OnMouseDrag() // РџР»Р°РІРЅРѕ С‚СЏРЅРµРј РєРѕС‚Р° Рє РїРѕР·РёС†РёРё РєСѓСЂСЃРѕСЂР° СЃ СѓС‡С‘С‚РѕРј СЃРјРµС‰РµРЅРёСЏ
 	{
 		if (CanMove)
 			this.transform.position = Vector3.MoveTowards(this.transform.position, GetMousePos() - dragOffset, speed * Time.deltaTime);
 	}
 
-	protected void OnMouseUp() // Возвращаем порядок отрисовки и сообщаем, что мышь отпущена
+	protected void OnMouseUp() // Р’РѕР·РІСЂР°С‰Р°РµРј РїРѕСЂСЏРґРѕРє РѕС‚СЂРёСЃРѕРІРєРё Рё СЃРѕРѕР±С‰Р°РµРј, С‡С‚Рѕ РјС‹С€СЊ РѕС‚РїСѓС‰РµРЅР°
 	{
 		spriteRenderer.sortingOrder = 3;
 		OnUp?.Invoke(this);
 		if (CanMove)
 			transform.position = oldPos;
 	}
-	protected Vector3 GetMousePos() // Конвертируем позицию мыши из экранных координат в мировые
+	protected Vector3 GetMousePos() // РљРѕРЅРІРµСЂС‚РёСЂСѓРµРј РїРѕР·РёС†РёСЋ РјС‹С€Рё РёР· СЌРєСЂР°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚ РІ РјРёСЂРѕРІС‹Рµ
 	{
 		var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		pos.z = 0;

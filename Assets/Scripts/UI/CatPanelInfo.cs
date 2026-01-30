@@ -1,15 +1,15 @@
-using TMPro;
+п»їusing TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CatPanelInfo : MonoBehaviour//Скрипт для панели с информацией об одном коте
+public class CatPanelInfo : MonoBehaviour//РЎРєСЂРёРїС‚ РґР»СЏ РїР°РЅРµР»Рё СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ РѕР± РѕРґРЅРѕРј РєРѕС‚Рµ
 {
     public Image CatImage;
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Info;
     public TextMeshProUGUI Description;
 
-    public void Set(CatData data)//Устанапливаем значения полученные из data
+    public void Set(CatData data)//РЈСЃС‚Р°РЅР°РїР»РёРІР°РµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СѓС‡РµРЅРЅС‹Рµ РёР· data
     {
         CatImage.sprite = data.CatSprite;
         Name.text = data.CatName;
